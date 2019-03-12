@@ -46,14 +46,8 @@ namespace WebApplication1.Controllers
             if (resource == null)
             {
                 return Content(HttpStatusCode.NotFound, "Указанный ресурс не существует!");
-            }
-            int resourceLength = resource.Name.Length;
-            if (begin > resourceLength || begin < 0 || length > resourceLength || length <=0 || (begin > 0 && length > resourceLength)
-                || (begin == length && length ==0))
-            {
-                return Content(HttpStatusCode.BadRequest, "Параметры подстроки указаны неверно");
-            }
-            string substr = resources[id].Name.Substring(begin, length);
+            }            
+            string substr = resource.Name.Substring(begin, length);
             return Ok(substr);
         }
 
@@ -73,36 +67,44 @@ namespace WebApplication1.Controllers
             {
                 return Content(HttpStatusCode.NotFound, "Указанный ресурс не существует!");
             }
-            resources[id].Name = resourceName;
+            resource.Name = resourceName;
             return Ok();
         }
 
         [HttpPut]
         public void EditResourceBeginningInsert(int id, string beginInsert)
         {
-            resources[id].Name = String.Concat(beginInsert, resources[id].Name);
+            Resource resource = resources.FirstOrDefault((p) => p.Id == id);
+            resource.Name = resource.Name.Insert(0, beginInsert);
         }
 
         [HttpPut]
         public void EditResourceEndingInsert(int id, string endInsert)
         {
-            resources[id].Name = String.Concat(resources[id].Name, endInsert);
+            Resource resource = resources.FirstOrDefault((p) => p.Id == id);
+            resource.Name = resource.Name.Insert(resource.Name.Length, endInsert);
         }
 
         [HttpPut]
         public void EditResourceIndexPosInsert(int id, int index, string anyInsert)
         {
-            string resPart1 = resources[id].Name;
-            if (index == 0)
-                EditResourceBeginningInsert(id, anyInsert);
-            if (index == resPart1.Length)
-                EditResourceEndingInsert(id, anyInsert);
-            resPart1 = resources[id].Name.Substring(0, index + 1);
-            string resPart2 = resources[id].Name.Substring(index + 1, resources[id].Name.Length - resPart1.Length);
-            resources[id].Name = String.Concat(resPart1, anyInsert, resPart2);
+            Resource resource = resources.FirstOrDefault((p) => p.Id == id);
+            resource.Name = resource.Name.Insert(index, anyInsert);
         }
 
+        [HttpPut]
+        public void EditResourceRemoveSubsrt(int id, int index, int length)
+        {
+            Resource resource = resources.FirstOrDefault((p) => p.Id == id);
+            resource.Name = resource.Name.Remove(index, length);
+        }
 
+        [HttpPut]
+        public void EditResourceReplaceSubsrt(int id, string oldStr, string newStr)
+        {
+            Resource resource = resources.FirstOrDefault((p) => p.Id == id);
+            resource.Name = resource.Name.Replace(oldStr, newStr);
+        }
         // DELETE api/values/5
         public void Delete(int id)
         {
