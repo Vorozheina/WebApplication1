@@ -14,7 +14,7 @@ namespace WebApplication1.Controllers
     [EnableCors(origins: "http://localhost:57358", headers: "*", methods: "*")]
     public class ValuesController : ApiController
     {
-        public List<Resource> resources = new List<Resource>
+        public static List<Resource> resources = new List<Resource>
         {
             new Resource { Id = 1, Name = "juice"},
             new Resource { Id = 2, Name = "soup"},
@@ -24,6 +24,7 @@ namespace WebApplication1.Controllers
 
 
         // GET api/values
+        [HttpGet]
         public async Task<IEnumerable<Resource>> Get()
         {
             return await Task.Run(() => resources);
@@ -38,7 +39,7 @@ namespace WebApplication1.Controllers
             {
                 return await Task.FromResult(NotFound());
             }
-            return await Task.FromResult(Ok(resource));
+            return await Task.FromResult(Ok(resources.Last().Name));
         }
 
         private async Task<Resource> GetResourceAsync(int id)
@@ -69,7 +70,7 @@ namespace WebApplication1.Controllers
             resource.Id = numberOfRessources + 1;
             resource.Name = newRes;
             await Task.Run(() => resources.Add(resource));
-            return await Task.FromResult(Ok(resources.Last().Name));
+            return await Task.FromResult(Ok(resources));
         }
 
         // PUT api/values/5
