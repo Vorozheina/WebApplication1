@@ -319,3 +319,10 @@ C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Reflec
 C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Text.Encodings.Web.xml
 C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Threading.Tasks.Extensions.xml
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\Microsoft.AspNet.WebHooks.Common.dll
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\Microsoft.AspNet.WebHooks.Receivers.dll
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\Microsoft.AspNet.WebHooks.Common.xml
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\Microsoft.AspNet.WebHooks.Receivers.xml
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Web.Cors.dll
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Web.Http.Cors.dll
+C:\Users\Катя\source\repos\WebApplication1\WebApplication1\bin\System.Web.Http.Cors.xml
